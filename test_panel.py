@@ -12,4 +12,5 @@ class Test_pt_Panel(bpy.types.Panel):
         layout = self.layout
  
         row = layout.row()
-        row.operator('view3d.cursor_center', text = "Center 3D cursor")
+        row.operator('view3d.cursor_center', text = "changemotherfucker").id = 0
+        row.operator('view3d.cursor_center', text = "changelayout").id = 1

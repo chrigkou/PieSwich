@@ -5,8 +5,13 @@ class Test_pie(bpy.types.Operator):
     bl_label = "Simple operator"
     bl_description = "Center 3d cursor"
 
+    id = bpy.props.IntProperty(default=0)
+    output = ['Sculpting',
+            'Layout']
+
     def execute(self, context):
-        bpy.ops.view3d.snap_cursor_to_center()
-        return ("DONE")
+        #layout = self.layout
+        context.window.workspace = bpy.data.workspaces[self.output[self.id]]
+        return {'FINISHED'}
 
         

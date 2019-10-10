@@ -22,12 +22,27 @@ bl_info = {
     "category" : "Generic"
 }
 import bpy
+from bpy.props import *
+from bpy.types import AddonPreferences
+import rna_keymap_ui
+
 from . first_op import Test_pie
 from . test_panel import Test_pt_Panel
+from . pie_switcher import Pie_Switcher_Menu
 
-classes = ()
+def register():
+    bpy.utils.register_class(Test_pie)
+    bpy.utils.register_class(Test_pt_Panel)
+    bpy.utils.register_class(Pie_Switcher_Menu)
 
-register, unregister = bpy.utils.register_classes_factory(classes)
+    kc = bpy.context.window_manager.keyconfigs.addon
+    kn = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
 
+    kni = kn.keymaps_items.new("wm.call_menu_pie", "COMMA", "PRESS", shift=True)
+    kni.properties.name = Pie_Switcher_Menu.bl_idname
+    addon_keymaps.append((kn, kni))
 
-
+def unregister():
+    bpy.utils.unregister_class(Test_pt_Panel)
+    bpy.utils.unregister_class(Test_pie)
+    bpy.utils.unregister_class(Pie_Switcher_Menu)
