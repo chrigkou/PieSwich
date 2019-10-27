@@ -7,8 +7,14 @@ class Test_pie(bpy.types.Operator):
 
     id = bpy.props.IntProperty(default=0)
     output = ['Sculpting',
-            'Layout']
-
+            'Layout',
+            'Modeling',
+            'Shading',
+            'UV Editing',
+            'Texture Paint',
+            'Animation',
+            'Scripting']
+            
     def execute(self, context):
         #layout = self.layout
         context.window.workspace = bpy.data.workspaces[self.output[self.id]]
