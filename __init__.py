@@ -21,6 +21,7 @@ bl_info = {
     "warning" : "",
     "category" : "Generic"
 }
+
 import bpy
 from bpy.props import *
 from bpy.types import AddonPreferences
@@ -38,7 +39,7 @@ def register():
     kc = bpy.context.window_manager.keyconfigs.addon
     kn = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
 
-    kni = kn.keymaps_items.new("wm.call_menu_pie", "COMMA", "PRESS", shift=True)
+    kni = kn.keymap_items.new("wm.call_menu_pie", "COMMA", "PRESS", shift=True)
     kni.properties.name = Pie_Switcher_Menu.bl_idname
     addon_keymaps.append((kn, kni))
 
